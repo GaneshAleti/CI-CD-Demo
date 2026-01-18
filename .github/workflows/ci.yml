@@ -1,10 +1,10 @@
 name: Docker Image CI
 
 on:
-  # push:
-  #   branches: [ "main" ]
-  pull_request:
+  push:
     branches: [ "main" ]
+  # pull_request:
+  #   branches: [ "main" ]
 
 jobs:
 
@@ -32,6 +32,7 @@ jobs:
     environment: Dev
     steps:
       - uses: actions/checkout@v4
+        repoistory: GaneshAleti/CI-CD-Demo-Devops
         with:
           token: ${{secrets.CI_CD_DEMO_REPO_READ_WRITE}}
       - name: Change Image in k8s manifest file
