@@ -36,7 +36,7 @@ jobs:
           token: ${{secrets.CI_CD_DEMO_REPO_READ_WRITE}}
       - name: Change Image in k8s manifest file
         run: |
-          sed -i "s|image: .*|image: ${{secrets.DOCKER_USERNAME}}/demo:${{github.run_id}}|" k8s/manifes.yaml
+          sed -i "s|image: .*|image: ${{secrets.DOCKER_USERNAME}}/demo:${{github.run_id}}|" k8s/manifest.yaml
       - name: Commit changes to Repo
         run: |
           git config --global user.email "ganeshbabualeti@gmail.com"
