@@ -45,5 +45,7 @@ jobs:
           git config --global user.email "ganeshbabualeti@gmail.com"
           git config --global user.name "GaneshAleti"
           git add k8s/manifest.yaml
-          git commit -m "[CI]: Update Demo image tag"
+          git commit -m "[CI]: Update Demo image tag ${{github.run_id}}" 
           git push origin main
+            
+     
