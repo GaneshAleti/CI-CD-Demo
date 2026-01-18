@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fastapi-hello
+  labels:
+    app: fastapi-hello
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: fastapi-hello
+  template:
+    metadata:
+      labels:
+        app: fastapi-hello
+    spec:
+      containers:
+        - name: app
+          image: ghcr.io/OWNER/REPO:latest  # overridden by overlay
+          ports:
+            - containerPort: 8000
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 8000
+            initialDelaySeconds: 2
+            periodSeconds: 5
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 8000
+            initialDelaySeconds: 10
+            periodSeconds: 10
+
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: fastapi-hello
+spec:
+  selector:
+    app: fastapi-hello
+  ports:
+    - name: http
+      port: 80
+      targetPort: 8000
+  type: ClusterIP
