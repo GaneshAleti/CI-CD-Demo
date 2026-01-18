@@ -31,10 +31,10 @@ jobs:
     runs-on: ubuntu-latest
     environment: Dev
     steps:
-      - uses: actions/checkout@v4
-        repoistory: GaneshAleti/CI-CD-Demo-Devops
+      - uses: actions/checkout@v6.0.2
         with:
           token: ${{secrets.CI_CD_DEMO_REPO_READ_WRITE}}
+          repository: GaneshAleti/CI-CD-Demo-Devops
       - name: Change Image in k8s manifest file
         run: |
           sed -i "s|image: .*|image: ${{secrets.DOCKER_USERNAME}}/demo:${{github.run_id}}|" k8s/manifest.yaml
