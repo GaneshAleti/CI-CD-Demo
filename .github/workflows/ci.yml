@@ -25,4 +25,4 @@ jobs:
       uses: docker/build-push-action@v6.18.0
       with:
         push: true
-        tags: ${{DOCKER_USERNAME}}/demo/${{github.run_id}}
+        tags: ${{secrets.DOCKER_USERNAME}}/demo/${{github.run_id}}
