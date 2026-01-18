@@ -26,6 +26,7 @@ jobs:
       uses: docker/build-push-action@v6.18.0
       with:
         push: true
+        platforms: linux/amd64,linux/arm64
         tags: ${{secrets.DOCKER_USERNAME}}/demo:${{github.run_id}}
   write-to-repo:
     runs-on: ubuntu-latest
