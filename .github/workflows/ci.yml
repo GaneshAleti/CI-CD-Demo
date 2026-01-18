@@ -33,7 +33,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          token: ${{secrets.CI_CD_DEMO_READ_WRITE}}
+          token: ${{secrets.CI_CD_DEMO_REPO_READ_WRITE}}
       - name: Change Image in k8s manifest file
         run: |
           sed -i "s|image: .*|image: ${{secrets.DOCKER_USERNAME}}/demo:${{github.run_id}}|" k8s/manifes.yaml
