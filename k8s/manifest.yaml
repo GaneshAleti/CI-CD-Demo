@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: app
-          image: aletigo1234/demo:21110126301
+          image: aletigo1234/demo:21110128126
           ports:
             - containerPort: 8000
           readinessProbe:
