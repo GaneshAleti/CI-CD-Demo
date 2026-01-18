@@ -27,3 +27,20 @@ jobs:
       with:
         push: true
         tags: ${{secrets.DOCKER_USERNAME}}/demo:${{github.run_id}}
+  write-to-repo:
+    runs-on: ubuntu-latest
+    environment: Dev
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{secrets.CI_CD_DEMO_READ_WRITE}}
+      - name: Change Image in k8s manifest file
+        run: |
+          sed -i "s|image: .*|image: ${{secrets.DOCKER_USERNAME}}/demo:${{github.run_id}}|" k8s/manifes.yaml
+      - name: Commit changes to Repo
+        run: |
+          git config --global user.email "ganeshbabualeti@gmail.com"
+          git config --global user.name "GaneshAleti"
+          git add k8s/manifest.yaml
+          git commit -m "[CI]: Update Demo image tag"
+          git push origin main
