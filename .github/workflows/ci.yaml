@@ -8,5 +8,6 @@ jobs:
         steps:
             - name: Code checkout
               uses: actions/checkout@4
-            - RUN: |
+            - name: Run some commands
+              run: |
                 ls -l
